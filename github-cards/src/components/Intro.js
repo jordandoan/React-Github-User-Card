@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
-class Intro extends Component {
-    render() {
-        return(
-            <div>Chicken</div>
-        )
-    }
+const Intro = () => {
+    return (
+        <h1>Github Profiles</h1>
+    )
 }
 
 export default Intro;

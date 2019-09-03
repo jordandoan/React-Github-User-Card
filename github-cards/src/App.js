@@ -12,27 +12,28 @@ class App extends Component {
     this.state = {
       user: "johnoro",
       baseURL: "https://api.github.com/users/",
-      info: [dummyData],
+      info: [],
       searched: false,
       followers: false
     };
   }
 
-  // componentDidMount() {
-  //   const fetchData = () => {
-  //     axios.get(this.state.baseURL)
-  //     .then((res) => {
-            // let newInfo = this.state.info;
-            // newInfo.push(res.data);
-            // this.setState({info: newInfo})
-  //     })
-  //     .catch((err) => console.log(err));
-  //   }
-  //   this.setState({baseURL:this.state.baseURL+this.state.user}, fetchData);
-  // }
+  componentDidMount() {
+    const fetchData = () => {
+      axios.get(this.state.baseURL)
+      .then((res) => {
+            let newInfo = this.state.info;
+            newInfo.push(res.data);
+            this.setState({user:"", info: newInfo})
+      })
+      .catch((err) => console.log(err));
+    }
+    this.setState({baseURL:this.state.baseURL+this.state.user}, fetchData);
+  }
   
   componentDidUpdate() {
     if (this.state.searched) {
+      this.setState({searched:false});
       axios.get(this.state.baseURL)
       .then(res => {
         this.setState({
@@ -77,13 +78,14 @@ class App extends Component {
     return (
       <div className="App">
         <Intro/>
-        <div className="user-container">
-          {this.state.info.map(user =>
-            <UserCard info={user} handleFollowers={this.handleFollowers}/>
-          )}
-        </div>
-        <Form user={this.state.user} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-
+        <main>
+          <div className="user-container">
+            {this.state.info.map(user =>
+              <UserCard info={user} handleFollowers={this.handleFollowers}/>
+            )}
+          </div>
+          <Form user={this.state.user} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        </main>
       </div>
     );
   }
