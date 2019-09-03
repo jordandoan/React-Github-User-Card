@@ -13,16 +13,37 @@ class App extends Component {
       user: "johnoro",
       baseURL: "https://api.github.com/users/",
       info: dummyData,
+      searched: false,
+      followers: false
     };
   }
 
   // componentDidMount() {
-  //   axios.get(this.state.baseURL+this.state.user)
+  //   const fetchData = () => {
+  //     axios.get(this.state.baseURL)
   //     .then((res) => {
   //       this.setState({info: res.data})
   //     })
   //     .catch((err) => console.log(err));
+  //   }
+  //   this.setState({baseURL:this.state.baseURL+this.state.user}, fetchData);
   // }
+  componentDidUpdate() {
+    if (this.state.searched) {
+
+    }
+    if (this.state.followers) {
+
+    }
+  }
+
+  handleFollowers = () => {
+
+  }
+
+  handleSubmit = () => {
+
+  }
 
   render() {
     return (
