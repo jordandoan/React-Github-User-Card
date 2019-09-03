@@ -1,0 +1,48 @@
+.user-container {
+  width: 700px;
+}
+
+.user-card {
+  display:flex;
+  margin: 50px 10px;
+  border:3px solid blue;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.user-card img {
+  width: 200px;
+}
+
+.description {
+  margin-left: 10px;
+}
+
+main {
+  display:flex;
+  justify-content: center;
+}
+
+.form, .user-container {
+  border: 5px solid black;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 3px gray;
+  margin: 0px 20px;
+}
+.form {
+  text-align:center;
+  padding:5px;
+  width: 250px;
+}
+
+button {
+  background-color:lightseagreen;
+  padding: 5px 10px;
+  color:white;
+  border: 0;
+  border-radius: 5px;
+  margin: 10px;
+}
+h1 {
+  text-align: center;
+}
