@@ -1,13 +1,17 @@
 .user-container {
   width: 700px;
-  border: 1px solid black;
+  border: 5px solid black;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 3px gray;
   margin:auto;
 }
 
 .user-card {
   display:flex;
   margin: 50px 10px;
-  border:1px solid blue;
+  border:3px solid blue;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px black;
 }
 
 .user-card img {

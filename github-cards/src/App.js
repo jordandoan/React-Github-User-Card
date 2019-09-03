@@ -30,9 +30,16 @@ class App extends Component {
   //   }
   //   this.setState({baseURL:this.state.baseURL+this.state.user}, fetchData);
   // }
+  
   componentDidUpdate() {
     if (this.state.searched) {
-
+      axios.get(this.state.baseURL)
+      .then(res => {
+        this.setState({
+          searched:false,
+          info: [res.data]
+        })
+      })
     }
     if (this.state.followers) {
       axios.get(this.state.baseURL)
@@ -50,13 +57,22 @@ class App extends Component {
       {
         baseURL: user.followers_url,
         followers:true,
+        search:false,
       }
     );
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    this.setState({
+      user:"",
+      baseURL: "https://api.github.com/users/" + this.state.user,
+      searched:true,
+      followers:false,
+    }, () => {console.log(this.state)});
   }
-
+  handleChange = (event) => {
+    this.setState({user: event.target.value});
+  }
   render() {
     return (
       <div className="App">
@@ -66,7 +82,7 @@ class App extends Component {
             <UserCard info={user} handleFollowers={this.handleFollowers}/>
           )}
         </div>
-        <Form/>
+        <Form user={this.state.user} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
 
       </div>
     );

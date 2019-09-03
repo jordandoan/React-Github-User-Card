@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class UserCard extends Component {
     render() {
         let { info } = this.props;
-        console.log(info);
         return(
             <div className="user-card">
                 <img src={this.props.info.avatar_url} alt="Avatar"/>
