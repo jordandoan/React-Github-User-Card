@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       user: "johnoro",
       baseURL: "https://api.github.com/users/",
-      info: dummyData,
+      info: [dummyData],
       searched: false,
       followers: false
     };
@@ -22,7 +22,9 @@ class App extends Component {
   //   const fetchData = () => {
   //     axios.get(this.state.baseURL)
   //     .then((res) => {
-  //       this.setState({info: res.data})
+            // let newInfo = this.state.info;
+            // newInfo.push(res.data);
+            // this.setState({info: newInfo})
   //     })
   //     .catch((err) => console.log(err));
   //   }
@@ -33,24 +35,39 @@ class App extends Component {
 
     }
     if (this.state.followers) {
-
+      axios.get(this.state.baseURL)
+        .then(res => {
+          this.setState({
+            followers:false,
+            info: res.data
+          })
+        })
     }
   }
 
-  handleFollowers = () => {
-
+  handleFollowers = (user) => {
+    this.setState(
+      {
+        baseURL: user.followers_url,
+        followers:true,
+      }
+    );
   }
 
   handleSubmit = () => {
-
   }
 
   render() {
     return (
       <div className="App">
         <Intro/>
-        <UserCard info={this.state.info}/>
+        <div className="user-container">
+          {this.state.info.map(user =>
+            <UserCard info={user} handleFollowers={this.handleFollowers}/>
+          )}
+        </div>
         <Form/>
+
       </div>
     );
   }
